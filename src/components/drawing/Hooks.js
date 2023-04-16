@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { AppContext } from "@/pages/_app";
+import { useContext, useEffect, useRef, useState } from "react";
 
 export function useOnDraw(onDraw) {
   const [linePoints, setLinePoints] = useState([]);
-  const [finalLinePoints, setFinalLinePoints] = useState([]);
+  const { finalLinePoints, setFinalLinePoints } = useContext(AppContext);
+ 
   const canvasRef = useRef(null);
   const isDrawingRef = useRef(false);
   const prevPointRef = useRef(null);
@@ -12,6 +14,10 @@ export function useOnDraw(onDraw) {
 
   function setCanvasRef(ref) {
     canvasRef.current = ref;
+  }
+  function clear() {
+    const ctx = canvasRef.current.getContext("2d");
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   }
 
   function onCanvasMouseDown() {
@@ -50,14 +56,15 @@ export function useOnDraw(onDraw) {
         prevPointRef.current = null;
         if (linePoints.length != 0) {
           let lineObj = {
-            lineCordinates: {
-                name:`Line ${finalLinePoints.length + 1}`,
-              start: linePoints[0],
-              end: linePoints[linePoints.length - 1],
-            },
+            name: `Line ${finalLinePoints.length + 1}`,
+            start: linePoints[0],
+            end: linePoints[linePoints.length - 1],
           };
-        //   finalLinePoints.push(lineObj);
-          setFinalLinePoints((finalLinePoints) => [...finalLinePoints, lineObj]);
+          //   finalLinePoints.push(lineObj);
+          setFinalLinePoints((finalLinePoints) => [
+            ...finalLinePoints,
+            lineObj,
+          ]);
           setLinePoints([]);
         }
       };
@@ -82,6 +89,6 @@ export function useOnDraw(onDraw) {
   return {
     setCanvasRef,
     onCanvasMouseDown,
-    finalLinePoints,
+    clear,canvasRef
   };
 }

@@ -7,7 +7,13 @@ export const AppContext = createContext();
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const value = { isLoggedIn, setIsLoggedIn };
+  const [finalLinePoints, setFinalLinePoints] = useState([]);
+  const value = {
+    isLoggedIn,
+    setIsLoggedIn,
+    finalLinePoints,
+    setFinalLinePoints,
+  };
   useEffect(() => {
     if (isLoggedIn === false) {
       router.push("/");
