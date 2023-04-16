@@ -1,3 +1,4 @@
+import Canvas from "@/components/drawing/Canvas";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,11 @@ const Video = () => {
   //     })
   //   },[videoID])
 
-  return <p>VideoID: {videoID}</p>;
+  return (
+    <>
+      <Canvas width={700} height={500} videoID={videoID} videoURL={videoURL}/>
+    </>
+  );
 };
 
 export default Video;
