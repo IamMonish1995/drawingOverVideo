@@ -1,5 +1,7 @@
+import { DashboardLayout } from "@/components/dashboard-layout";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
+import Home from ".";
 export const AppContext = createContext();
 
 const MyApp = ({ Component, pageProps }) => {
@@ -13,7 +15,13 @@ const MyApp = ({ Component, pageProps }) => {
   }, [isLoggedIn]);
   return (
     <AppContext.Provider value={value}>
-      <Component {...pageProps} />
+      {isLoggedIn ? (
+        <DashboardLayout>
+          <Component {...pageProps} />
+        </DashboardLayout>
+      ) : (
+        <Home />
+      )}
     </AppContext.Provider>
   );
 };

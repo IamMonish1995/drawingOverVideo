@@ -21,7 +21,7 @@ import { login, register } from "@/service/authrequest";
 
 const theme = createTheme();
 
-export default function Home() {
+const Home = () =>{
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
   const [isRegister, setIsRegister] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -155,3 +155,5 @@ export default function Home() {
     </ThemeProvider>
   );
 }
+
+export default Home
