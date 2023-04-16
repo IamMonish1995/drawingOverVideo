@@ -8,7 +8,8 @@ const DashboardLayoutRoot = styled("div")(({ theme }) => ({
 }));
 const MainContentLayout = styled("div")(({ theme }) => ({
   paddingTop: 20,
-  paddingLeft: 80,
+  paddingLeft: 70,
+  paddingRight: 70,
 }));
 
 export const DashboardLayout = (props) => {
