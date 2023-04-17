@@ -3,9 +3,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 export function useOnDraw(onDraw) {
   const [linePoints, setLinePoints] = useState([]);
-  const { finalLinePoints, setFinalLinePoints } = useContext(AppContext);
- 
-  const canvasRef = useRef(null);
+  const { finalLinePoints, setFinalLinePoints,canvasRef } = useContext(AppContext);
+
   const isDrawingRef = useRef(false);
   const prevPointRef = useRef(null);
 
@@ -14,10 +13,6 @@ export function useOnDraw(onDraw) {
 
   function setCanvasRef(ref) {
     canvasRef.current = ref;
-  }
-  function clear() {
-    const ctx = canvasRef.current.getContext("2d");
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   }
 
   function onCanvasMouseDown() {
@@ -89,6 +84,5 @@ export function useOnDraw(onDraw) {
   return {
     setCanvasRef,
     onCanvasMouseDown,
-    clear,canvasRef
-  };
+    };
 }

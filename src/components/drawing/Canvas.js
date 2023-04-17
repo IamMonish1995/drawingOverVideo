@@ -4,7 +4,7 @@ import { AppContext } from "@/pages/_app";
 
 const Canvas = ({ width, height }) => {
   const { finalLinePoints } = useContext(AppContext);
-  const { setCanvasRef, onCanvasMouseDown, clear, canvasRef } =
+  const { setCanvasRef, onCanvasMouseDown } =
     useOnDraw(onDraw);
   const colors = ["#FF6633", "#FFB399", "#FF33FF", "#FFFF99", "#00B3E6"];
 
@@ -49,10 +49,7 @@ const Canvas = ({ width, height }) => {
           height={height}
           src="https://www.youtube.com/embed/MNn9qKG2UFI?controls=0&autoplay=1&loop=1"
           title="detection"
-          // frameborder="0"
-          // autoPlay="true"
-          // muted="true"
-          allow="accelerometer; muted; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       </div>
     </>
@@ -65,11 +62,11 @@ const canvasStyle = {
   border: "1px solid black",
   background: "#ff000000",
   position: "absolute",
-  zIndex:1000
+  zIndex: 1000,
 };
 const styledContainer = {
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "start",
   alignItems: "center",
   position: "relative",
 };
